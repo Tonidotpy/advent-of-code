@@ -5,17 +5,22 @@ typedef long long ll;
 using namespace std;
 
 int main() {
-    ifstream file ("input.txt");
+    ifstream file ("../input.txt");
     string cal = "";
-    ll res = 0, cur = 0;
+    vector<ll> v;
+    ll cur = 0;
     while(getline(file, cal)) {
         if (cal.empty()) {
-            res = max(res, cur);
+            v.push_back(cur);
             cur = 0;
         }
         else
             cur += stoi(cal);
     }
-    cout << max(res, cur) << "\n";
+    v.push_back(cur);
+    sort(v.begin(), v.end(), greater<>());
+
+    cout << v[0] + v[1] + v[2] << "\n";
+
     return 0;
 }

@@ -12,7 +12,7 @@ inline ll pts(char & c) {
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
+    freopen("../input.txt", "r", stdin);
 
     char a, b;
     ll res = 0;
