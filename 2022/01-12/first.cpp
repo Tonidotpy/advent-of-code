@@ -12,11 +12,10 @@ int main() {
         if (cal.empty()) {
             res = max(res, cur);
             cur = 0;
-            continue;
         }
-
-        cur += stoi(cal);
+        else
+            cur += stoi(cal);
     }
-    cout << res << "\n";
+    cout << max(res, cur) << "\n";
     return 0;
 }
