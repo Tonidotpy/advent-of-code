@@ -1,6 +1,6 @@
 # Day 6: Tuning trouble
 
-# Part one
+## Part one
 
 The preparations are finally complete; you and the Elves leave camp on foot and begin to make your way toward the <span style="color: #ffff66;text-shadow: 0 0 5px #ffff66;">star</span> fruit grove.
 
