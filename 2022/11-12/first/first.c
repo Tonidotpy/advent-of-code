@@ -40,7 +40,8 @@ int main() {
         for (len = strlen("  Starting items: "); s[len] != '\0'; len++) {
             monkeys[n].items[(monkeys[n].iTop)++] = atoll(s + len);
             while (s[len] >= '0' && s[len] <= '9') len++;
-            len++;  // Skip comma
+            if (s[len] == ',')
+                len++;  // Skip comma
         }
 
         // Operation
@@ -74,8 +75,6 @@ int main() {
         // If false
         scanf("    If false: throw to monkey %llu\n", &(monkeys[n].f));
 
-        fgets(s, MAX_STR_SIZE-1, stdin);
-
         n++;
     }
 
@@ -91,9 +90,9 @@ int main() {
                 item = monkeys[i].operation((monkeys[i].a < 0) ? item : monkeys[i].a,
                     (monkeys[i].b < 0) ? item : monkeys[i].b) / 3;
                 if (item % monkeys[i].div == 0)
-                    monkeys[monkeys[i].t].items[(monkeys[monkeys[i].t].iTop)++];
+                    monkeys[monkeys[i].t].items[(monkeys[monkeys[i].t].iTop)++] = item;
                 else
-                    monkeys[monkeys[i].f].items[(monkeys[monkeys[i].f].iTop)++];
+                    monkeys[monkeys[i].f].items[(monkeys[monkeys[i].f].iTop)++] = item;
                 cnt[i]++;
             }
             monkeys[i].iTop = 0;
