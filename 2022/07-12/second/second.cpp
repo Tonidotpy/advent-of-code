@@ -3,12 +3,12 @@
 #define TOTAL_DISK_SPACE 70000000ULL
 #define UNUSED_SPACE_THRESHOLD 30000000ULL
 
-typedef unsigned long long ll;
+typedef unsigned long long ull;
 
 using namespace std;
 
 typedef struct {
-    ll size;
+    ull size;
     vector<string> dirs;
 } Directory;
 
@@ -26,16 +26,16 @@ vector<string> split(string & s, const char & delim = ' ') {
     return res;
 }
 
-ll calculateSize(string path) {
+ull calculateSize(string path) {
     Directory & dir = dirs[path];
     if (dir.dirs.empty()) {
         return dir.size;
     }
     
     // Get size of inner directories
-    ll curSize = dir.size;
+    ull curSize = dir.size;
     for (auto d : dir.dirs) {
-        ll size = calculateSize(path + d + "/");
+        ull size = calculateSize(path + d + "/");
         curSize += size;
     }
 
@@ -86,7 +86,7 @@ int main() {
             }
             // File
             else {
-                ll size = stoull(cmd[0]);
+                ull size = stoull(cmd[0]);
                 dirs[pwd].size += size;
             }
         }
@@ -95,9 +95,10 @@ int main() {
     }
 
     calculateSize("/");
-    ll freeSpace = TOTAL_DISK_SPACE - dirs["/"].size;
-    ll minToDelete = max(0ULL, UNUSED_SPACE_THRESHOLD - freeSpace);
-    ll res = 1e19;
+    ull freeSpace = TOTAL_DISK_SPACE - dirs["/"].size;
+    ull minToDelete = max(0ULL, UNUSED_SPACE_THRESHOLD - freeSpace);
+
+    ull res = 1e19;
     for (auto x : dirs) {
         if (minToDelete <= x.second.size)
             res = min(res, x.second.size);

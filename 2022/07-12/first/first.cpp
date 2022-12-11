@@ -2,12 +2,12 @@
 
 #define SIZE_THRESHOLD 100000
 
-typedef unsigned long long ll;
+typedef unsigned long long ull;
 
 using namespace std;
 
 typedef struct {
-    ll size;
+    ull size;
     vector<string> dirs;
 } Directory;
 
@@ -25,8 +25,8 @@ vector<string> split(string & s, const char & delim = ' ') {
     return res;
 }
 
-ll thTotSize = 0;
-ll calculateSize(string path) {
+ull thTotSize = 0;
+ull calculateSize(string path) {
     Directory & dir = dirs[path];
     if (dir.dirs.empty()) {
         if (dir.size <= SIZE_THRESHOLD)
@@ -35,9 +35,9 @@ ll calculateSize(string path) {
     }
     
     // Get size of inner directories
-    ll curSize = dir.size;
+    ull curSize = dir.size;
     for (auto d : dir.dirs) {
-        ll size = calculateSize(path + d + "/");
+        ull size = calculateSize(path + d + "/");
         curSize += size;
     }
 
@@ -66,12 +66,14 @@ int main() {
                     tree.pop();
                     pwd = tree.top();
                 }
+                // Back to root folder
                 else if (cmd[2] == "/") {
                     while (!tree.empty())
                         tree.pop();
                     pwd = "/";
                     tree.push(pwd);
                 }
+                // Change directory
                 else {
                     pwd += cmd[2] + "/";
                     tree.push(pwd);
@@ -89,7 +91,7 @@ int main() {
             }
             // File
             else {
-                ll size = stoull(cmd[0]);
+                ull size = stoull(cmd[0]);
                 dirs[pwd].size += size;
             }
         }
