@@ -25,7 +25,7 @@ def replaceCode(article):
         r = '`'
         if tag.parent.name == 'pre':
             l = '\n```\n'
-            r = '```'
+            r = '```\n'
         tag.insert_before(l)
         tag.insert_after(r)
 
@@ -76,6 +76,8 @@ second.find('h2').extract() # Remove title
 
 md += "\n## Part Two\n\n"
 md += htmlToMd(second)
+
+md += "\n"
 
 with open('page.md', 'w') as f:
     f.write(md)
