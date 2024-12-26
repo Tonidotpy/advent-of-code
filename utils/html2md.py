@@ -6,6 +6,7 @@ def swapBoldCode(article):
     # In markdown everything inside the backticks is considered as code
     # and it is not parsed as markdown
     for tag in article.find_all('code'):
+        # BUG: Code outside the em tag is discarded
         em = tag.find('em')
         if em:
             newEm = soup.new_tag('code')
