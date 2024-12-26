@@ -1,3 +1,6 @@
 .vscode/
 build/
 env/
+
+page.html
+page.md
